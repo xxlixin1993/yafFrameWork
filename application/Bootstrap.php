@@ -36,7 +36,6 @@ class Bootstrap extends Yaf_Bootstrap_Abstract
         ini_set('yaf.use_spl_autoload', true);
 
         spl_autoload_register(function ($class) {
-//            var_dump($class);
             if ($class) {
                 $file = str_replace('\\', '/', __DIR__ . '/' . $class);
                 $file = $file . '.php';
@@ -49,6 +48,7 @@ class Bootstrap extends Yaf_Bootstrap_Abstract
 
     /**
      * 加载composer类库
+     * @throws Yaf_Exception
      * @author lixin1@douyu.tv
      */
     public function _initLoader()
@@ -56,10 +56,9 @@ class Bootstrap extends Yaf_Bootstrap_Abstract
         if (file_exists(ROOT_PATH . '/vendor/autoload.php')) {
             Yaf_Loader::import(ROOT_PATH . '/vendor/autoload.php');
         } else {
-            die("Plz composer update");
+            throw new Yaf_Exception('Failed to load redis extension');
         }
     }
-
 
 
     /**
@@ -85,7 +84,6 @@ class Bootstrap extends Yaf_Bootstrap_Abstract
             'prefix' => '',
         ]);
 
-        
         $capsule->setEventDispatcher(new LDispatcher(new LContainer));
         $capsule->setAsGlobal();
         $capsule->bootEloquent();
