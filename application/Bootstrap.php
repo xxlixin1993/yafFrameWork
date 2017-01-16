@@ -56,7 +56,7 @@ class Bootstrap extends Yaf_Bootstrap_Abstract
         if (file_exists(ROOT_PATH . '/vendor/autoload.php')) {
             Yaf_Loader::import(ROOT_PATH . '/vendor/autoload.php');
         } else {
-            throw new Yaf_Exception('Failed to load redis extension');
+            throw new Yaf_Exception('Plz composer update');
         }
     }
 
