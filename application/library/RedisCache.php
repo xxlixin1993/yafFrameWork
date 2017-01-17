@@ -16,7 +16,7 @@ class RedisCache
     {
         //读配置文件 建立连接
         $this->_conf = Yaf_Registry::get('redis');
-print_r($this->_conf);exit;
+
         //集群
         if ($this->_conf['cluster'] == true) {
 
