@@ -1,12 +1,13 @@
 <?php
 
 /**
- * redis操作类
+ * redis操作类 
+ * 定义redis key 和 对redis的具体操作
  * @file   Redis.php
  * @author lixin1@douyu.tv
  * @date   2017-1-17
  */
-class Redis
+class RedisHandle
 {
     public function __construct()
     {

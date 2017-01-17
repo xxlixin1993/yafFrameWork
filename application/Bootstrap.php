@@ -36,9 +36,7 @@ class Bootstrap extends Yaf_Bootstrap_Abstract
         Yaf_Loader::import(APP_PATH . "/application/redis.php");
         //得到redis实例后注册Yaf_Registry
         $redis_conn = CacheFactory::connCache('redis');
-
-        print_r(REDIS_CONFIG);exit;
-        echo rc('REDIS_HOST_MASTER');
+        
         print_r($redis_config->count());exit;
     }
     /**
