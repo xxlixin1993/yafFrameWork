@@ -24,8 +24,23 @@ class Bootstrap extends Yaf_Bootstrap_Abstract
         //框架配置
         $this->_config = Yaf_Application::app()->getConfig();
         Yaf_Registry::set("application", $this->_config);
+        //加载基础函数
+        Yaf_Loader::import(APP_PATH . "/function.php");
+
     }
 
+    public function _initRedis(){
+        //redis配置
+        $redis_config = new Yaf_Config_Ini(APP_PATH . "/conf/redis.ini", RUN_ENVIRON);
+        Yaf_Registry::set('redis', $redis_config->toArray());
+        Yaf_Loader::import(APP_PATH . "/application/redis.php");
+        //得到redis实例后注册Yaf_Registry
+        $redis_conn = CacheFactory::connCache('redis');
+
+        print_r(REDIS_CONFIG);exit;
+        echo rc('REDIS_HOST_MASTER');
+        print_r($redis_config->count());exit;
+    }
     /**
      * 加载初始化
      * @author lixin1@douyu.tv
